@@ -19,6 +19,11 @@ class ProductController extends Controller
             'products' => Product::with(['category', 'supplier'])->latest()->get(),
             'categories' => Category::all(),
             'suppliers' => Supplier::all(),
+            'can' => [
+                'create' => auth()->user()->can('create products'),
+                'edit' => auth()->user()->can('edit products'),
+                'delete' => auth()->user()->can('delete products'),
+            ],
         ]);
     }
 
